@@ -1,8 +1,8 @@
-#MySQLデータベースの名前
+;MySQLデータベースの名前
 database_name =
-#DBホスト
+;DBホスト
 database_host =
-#DBユーザー名
+;DBユーザー名
 database_user =
-#DBパスワード
+;DBパスワード
 database_password =
