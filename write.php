@@ -4,10 +4,13 @@ require_once('define.php');
 $dsn = 'mysql:dbname=' . DBNAME . ';host=' . DBHOST . ';charset=utf8';
 $user = DBUSER;
 $password = DBPASS;
-$query = 'SELECT * FROM posts';
+$query = 'INSERT INTO posts(post_id, title, message) VALUES(:post_id, :title, :message)';
 try {
     $dbh = new PDO($dsn, $user, $password);
     $stmt = $dbh->prepare($query);
+    $stmt->bindValue(':post_id', $insert_post_id);
+    $stmt->bindValue(':title', $insert_title);
+    $stmt->bindValue(':message', $insert_message);
     $stmt->execute();
 } catch (PDOException $e) {
     echo 'Connection failed: ' . $e->getMessage();
@@ -18,22 +21,14 @@ try {
 ?>
 
 <!DOCTYPE html>
-<html ng-app="view">
+<html>
     <head>
-<script type="text/javascript" src="angular-1.4.3/angular.js"></script>
-<script type="text/javascript" src="angular-1.4.3/angular-resource.js"></script>
-<script type="text/javascript" src="app.js"></script>
+
         <meta charset="utf-8">
-        <title></title>
+        <title>
+</title>
     </head>
     <body>
-<div ng-controller="viewCtrl">
-{{ppp}}
-    <ul>
-        <li ng-repeat="list in list">{{list.name}}</li>
-    </ul>
-</div>
-
 <pre>
     <?php var_dump($stmt->fetchAll()); ?>
 </pre>
