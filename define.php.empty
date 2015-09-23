@@ -12,3 +12,4 @@ define('DBNAME', $database_name);
 define('DBHOST', $database_host);
 define('DBUSER', $database_user);
 define('DBPASS', $database_password);
+define('DSN', 'mysql:dbname=' . DBNAME . ';host=' . DBHOST . ';charset=utf8');

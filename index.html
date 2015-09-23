@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html ng-app="view">
+    <head>
+<script type="text/javascript" src="angular-1.4.3/angular.js"></script>
+<script type="text/javascript" src="angular-1.4.3/angular-resource.js"></script>
+<script type="text/javascript" src="app.js"></script>
+        <meta charset="utf-8">
+        <title></title>
+    </head>
+    <body>
+<div ng-controller="blogCtrl">
+<div class="blog_title">
+{{title}}
+</div>
+<div class="blog_description">
+{{description}}
+</div>
+
+
+<br>
+<br>
+
+----------------------------------------------------
+<br/>
+
+<div ng-controller="postCtrl">
+
+<div class="post" ng-repeat="post in get | orderBy:'-id'">
+
+<div class="post_title">{{post.title}}</div>
+<div class="post_created_time">{{post.created_time}}</div>
+<div class="post_message">{{post.message}}</div>
+---------------------------------------------------
+</div>
+
+</div>
+    </body>
+</html>

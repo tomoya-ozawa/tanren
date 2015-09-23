@@ -1,12 +1,13 @@
 <?php
 require_once('define.php');
+$insert_title = $_POST['title'];
+$insert_message = $_POST['message'];
+$insert_post_id = getPostID();
 
-$dsn = 'mysql:dbname=' . DBNAME . ';host=' . DBHOST . ';charset=utf8';
-$user = DBUSER;
-$password = DBPASS;
 $query = 'INSERT INTO posts(post_id, title, message) VALUES(:post_id, :title, :message)';
+
 try {
-    $dbh = new PDO($dsn, $user, $password);
+    $dbh = new PDO(DSN, DBUSER, DBPASS);
     $stmt = $dbh->prepare($query);
     $stmt->bindValue(':post_id', $insert_post_id);
     $stmt->bindValue(':title', $insert_title);
@@ -16,21 +17,13 @@ try {
     echo 'Connection failed: ' . $e->getMessage();
     exit();
 }
+    header('location: index.html');
+    exit();
 
+function getPostID()
+{
+    $post_id = date('YmdHis');
+    return $post_id;
+}
 
 ?>
-
-<!DOCTYPE html>
-<html>
-    <head>
-
-        <meta charset="utf-8">
-        <title>
-</title>
-    </head>
-    <body>
-<pre>
-    <?php var_dump($stmt->fetchAll()); ?>
-</pre>
-    </body>
-</html>
