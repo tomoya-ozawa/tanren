@@ -1,3 +1,6 @@
 # githubにアップロードしたくないファイルを指定
-
 /define.php
+
+/gulpfile.js
+/node_modules
+/package.json
